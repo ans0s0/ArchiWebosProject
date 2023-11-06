@@ -28,36 +28,47 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
+	background-color: #FFFEF8;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /** end reset css**/
+
 body {
 	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #FFFEF8;
 }
+
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
 }
+
 section {
 	margin: 50px 0
 }
@@ -98,13 +109,16 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
 }
+
 #introduction figure {
 	flex: 1
 }
+
 #introduction img {
 	display: block;
 	margin: auto;
@@ -114,6 +128,7 @@ li:hover {
 #introduction article {
 	flex: 1
 }
+
 #introduction h2 {
 	margin-bottom: 1em;
 }
@@ -121,10 +136,38 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filters{
+	display: flex;
+	justify-content: center;
+	gap:10px;
+	text-align: center;
+	padding-bottom: 51px;
+	
+}
+
+.filter-button{
+height:37px;
+font-size:16px;
+font-weight: 700;
+font-family: Syne;
+color:#1D6154;
+background-color: #FFFEF8;
+border:1px solid #1D6154;
+border-radius:60px;
+
+}
+
+.filter-button:hover{
+	background-color: #1D6154;
+	color: white;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -139,15 +182,18 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
+
 #contact > * {
 	text-align: center;
 
 }
+
 #contact h2{
 	margin-bottom: 20px;
 }
+
 #contact form {
 	text-align: left;
 	margin-top:30px;
@@ -161,9 +207,11 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -180,9 +228,81 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+footer{
+	width:100%;
+	background-color: white;
+	height:60px;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+footer nav li {
+	padding-top:24px;
+	padding-bottom:20px;
+}
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
+	
 }
+
+/** log in page**/
+
+#login {
+	width: 50%;
+    margin: auto;
+	padding-top:150px;
+}
+
+#login > * {
+	text-align: center;
+	
+}
+
+#login h2{
+	margin-bottom: 7px;
+}                                 
+
+#login form {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+
+#login input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#login label {
+	margin-top:30px;
+	margin-bottom: 7px;
+}
+
+.forgot-password {
+	text-decoration: underline;
+	text-align: center;
+	font-size: 14px;
+	padding-bottom:355px;
+}
+
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2.3em auto 1.7em auto;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+
+
+
+
+
 
