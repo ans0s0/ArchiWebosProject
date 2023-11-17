@@ -3,7 +3,7 @@
 let form = document.querySelector("form");
 
 //J'ajoute un évènement au clic sur le bouton Envoyer
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault(); //J'annule le rechargement automatique du formulaire
 
   let baliseEmail = document.getElementById("myEmail"); //Je pointe vers ID Email
@@ -15,15 +15,24 @@ form.addEventListener("submit", (event) => {
   console.log(myEmail, myPassword); //J'affiche l'email et Password
 
   //Penser à rajouter des règles pour la syntaxe de l'email
-});
 
-const response = await fetch("http://localhost:8081/users/login", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    email: "myEmail",
-    password: "myPassword",
-  }),
-})
-  .then(res.json())
-  .then((json) => console.log(response));
+  const response = await fetch("http://localhost:5678/api/users/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: myEmail,
+      password: myPassword,
+    }),
+  });
+
+  const { userId, token } = await response.json();
+  console.log(token);
+
+  if (token) {
+    localStorage.setItem("token", token);
+    window.location.href = "index.html";
+    document.getElementById("edition").style.display = "block";
+  } else {
+    document.getElementById("error").style.display = "block";
+  }
+});
