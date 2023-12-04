@@ -12,8 +12,8 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="https://kit.fontawesome.com/e7c06ffab6.js" crossorigin="anonymous"></script>
-	<script type="module" src="../Backend/works.js"></script>
-	<script type="module" src="../Backend/login.js"></script>
+	<script type="module" src="works.js"></script>
+
 
 </head>
 
@@ -21,11 +21,80 @@
 
 <body>
 	<div id="edition">
-
-		<i class="fa-regular fa-pen-to-square"></i><a href="#"></a>
-		<span>Mode édition</span></a>
+		<!-- Modale suppresion travaux -->
+		<a href="#modal1" class="js-modal" id="link-edition"><i class="fa-regular fa-pen-to-square"></i>
+			<span>Mode édition</span></a>
 
 	</div>
+
+	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-libelledby="titlemodal">
+
+		<div id="content-modal">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+				id="js-close">
+				<path
+					d="M17.6546 8.05106C18.1235 7.58214 18.1235 6.82061 17.6546 6.35169C17.1856 5.88277 16.4241 5.88277 15.9552 6.35169L12.005 10.3056L8.05106 6.35544C7.58214 5.88652 6.82061 5.88652 6.35169 6.35544C5.88277 6.82436 5.88277 7.58589 6.35169 8.05481L10.3056 12.005L6.35544 15.9589C5.88652 16.4279 5.88652 17.1894 6.35544 17.6583C6.82436 18.1272 7.58589 18.1272 8.05481 17.6583L12.005 13.7044L15.9589 17.6546C16.4279 18.1235 17.1894 18.1235 17.6583 17.6546C18.1272 17.1856 18.1272 16.4241 17.6583 15.9552L13.7044 12.005L17.6546 8.05106Z"
+					fill="black" />
+			</svg>
+			<div class="modal-wrapper" id="all-work">
+
+				<h3 id="titlemodal">Galerie photo</h3>
+
+
+				<div id="works-gallery">
+
+				</div>
+				<hr>
+				<input type="submit" value="Ajouter une photo" id="submit-modal">
+			</div>
+		</div>
+		<!-- Modale ajout travaux -->
+		<div class="modal-wrapper" id="add-work">
+			<i class="fa-solid fa-arrow-left"></i>
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+				id="js-close">
+				<path
+					d="M17.6546 8.05106C18.1235 7.58214 18.1235 6.82061 17.6546 6.35169C17.1856 5.88277 16.4241 5.88277 15.9552 6.35169L12.005 10.3056L8.05106 6.35544C7.58214 5.88652 6.82061 5.88652 6.35169 6.35544C5.88277 6.82436 5.88277 7.58589 6.35169 8.05481L10.3056 12.005L6.35544 15.9589C5.88652 16.4279 5.88652 17.1894 6.35544 17.6583C6.82436 18.1272 7.58589 18.1272 8.05481 17.6583L12.005 13.7044L15.9589 17.6546C16.4279 18.1235 17.1894 18.1235 17.6583 17.6546C18.1272 17.1856 18.1272 16.4241 17.6583 15.9552L13.7044 12.005L17.6546 8.05106Z"
+					fill="black" />
+			</svg>
+			<h3 id="titlemodal">Ajout photo</h3>
+
+
+			<div id="add-photo">
+
+				<div id="icon-image"><i class="fa-regular fa-image"></i></div>
+
+				<div id="add-button">
+					<button>+ Ajouter photo</button>
+					<p>jpg, png : 4mo max</p>
+				</div>
+			</div>
+
+
+			<form action="http://localhost:5678/api/users" method="post" class="formulaire-ajout">
+
+				<label for="text">Titre</label>
+				<input type="text" name="title" id="work-choice" autofocus required>
+
+				<label for="category-select">Catégorie</label>
+				<select name="categories" id="work-choice">
+					<option value=""></option>
+					<option value="objets">Objets</option>
+					<option value="appartements">Appartements</option>
+					<option value="hotels&restaurants">Hôtels & restaurants</option>
+
+				</select>
+
+
+			</form>
+
+
+			<hr>
+			<input type="submit" value="Valider" id="submit-modal">
+		</div>
+
+	</aside>
+
 
 	<header>
 
@@ -35,7 +104,8 @@
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li><a href="login.html">login</a></li>
+				<li id="login"><a href="login.html">login</a></li>
+				<li id="logout"><a href="#">logout</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -63,7 +133,9 @@
 		</section>
 		<section id="portfolio">
 
-			<h2>Mes Projets</h2>
+			<h2>Mes Projets</h2><a href="#modal1" class="js-modal" id="button-edition"><i
+					class="fa-regular fa-pen-to-square" id="fa-regular"></i>
+				<span>Mode édition</span></a>
 
 			<div class="filters">
 				<span><button class="filter-button" id="tous-filter" type="button">Tous</button></span>

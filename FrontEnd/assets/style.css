@@ -201,6 +201,10 @@ li:hover {
 	color: #B1663C;
 }
 
+#logout {
+	display: none;
+}
+
 /* Mode edition */
 
 #edition {
@@ -209,18 +213,197 @@ li:hover {
 	height: 59px;
 	background-color: black;
 	color: white;
-	justify-content: center;
-	align-items: center;
-	gap: 14.9px;
 }
 
+#edition2 {
+	display: none;
 
+}
 
 .fa-regular {
 	color: white;
 	height: 15.58px;
 }
 
+#fa-regular {
+	color: black;
+	height: 15.58px;
+}
+
+/* Modale */
+
+.modal {
+	width: 630px;
+	Position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.30);
+}
+
+.modal-wrapper {
+	border-radius: 10px;
+	background: #FFF;
+	padding: 60px 99.9px 45px 104.5px;
+	max-width: calc(100vw-20px);
+	height: 688px;
+	max-height: calc(100vh-20px);
+	overflow: auto;
+
+}
+
+#titlemodal {
+	color: #000;
+	padding-top: 17.4px;
+	padding-bottom: 46px;
+	text-align: center;
+	font-family: Work Sans;
+	font-size: 26px;
+}
+
+
+
+#works-gallery {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 6.23px;
+	grid-row-gap: 25.47px;
+}
+
+#works-gallery img {
+	height: 139.86px;
+
+}
+
+hr {
+	background: #B3B3B3;
+	height: 1px;
+	margin-top: 67.3px;
+}
+
+aside input {
+	margin: 10px 49px 9px 10px;
+	width: 237px;
+	height: 36px;
+	align-content: center;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#js-close {
+	width: 24px;
+	height: 24px;
+	float: right;
+	cursor: pointer;
+
+}
+
+/* Modale ajout photo */
+
+.fa-arrow-left:before {
+	width: 24px;
+	height: 24px;
+}
+
+#add-photo {
+	background-color: #E8F1F6;
+	border-radius: 3px;
+	height: 169px;
+}
+
+#work-choice {
+	width: 100%;
+	height: 51px;
+	padding: 0;
+	margin: 10px 0px 21px 0px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#icon-image {
+	display: flex;
+	justify-content: center;
+	height: 76px;
+	padding-bottom: 6px;
+	padding-top: 13px;
+
+}
+
+.fa-image:before {
+	color: #B9C5CC;
+
+
+}
+
+#add-button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#add-button button {
+
+	height: 36px;
+	border-radius: 50px;
+	border-style: none;
+	background: #CBD6DC;
+	color: #306685;
+	font-family: Work Sans;
+	font-size: 14px;
+	padding: 10px 33px 10px 33px;
+}
+
+
+#add-button p {
+
+	font-family: Work Sans;
+	color: #444;
+	font-size: 10px;
+	padding-top: 7px;
+	padding-bottom: 19px;
+}
+
+.fa-image {
+	font-size: 76px;
+	text-align: center;
+
+}
+
+
+#i-image {
+	display: flex;
+	width: 100%;
+	height: 30%;
+	align-items: center;
+	justify-content: center;
+}
+
+.formulaire-ajout {
+	padding-top: 30px;
+}
+
+#submit-add {
+	display: block;
+	border-radius: 60px;
+	background: #A7A7A7;
+	align-items: center;
+}
+
+.hr-add {
+	margin-top: 26px;
+	margin-bottom: 32px;
+}
+
+/* Ajout projet */
+
+
+/* Introduction */
 #introduction {
 	display: flex;
 	align-items: center;
@@ -330,6 +513,7 @@ li:hover {
 	flex-direction: column;
 }
 
+
 #contact input {
 	height: 50px;
 	font-size: 1.2em;
@@ -381,7 +565,7 @@ footer nav ul {
 #login {
 	width: 50%;
 	margin: auto;
-	padding-top: 150px;
+
 }
 
 #login>* {
