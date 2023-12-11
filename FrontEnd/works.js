@@ -14,6 +14,7 @@ function genererWorks(works) {
     // On accède à l’indice i de la liste pieces pour configurer la source de l’image.
     const imageElement = document.createElement("img");
     imageElement.src = works[i].imageUrl;
+    imageElement.id = works[i].id;
 
     // Création d’une balise dédiée au titre
     const titleElement = document.createElement("h3");
@@ -136,13 +137,6 @@ close.addEventListener("click", function () {
   document.getElementById("modal1").style.display = "none";
 });
 
-//fermeture de la modale au clic sur la modale
-let close2 = document.getElementById("modal1");
-
-close2.addEventListener("click", function () {
-  document.getElementById("modal1").style.display = "none";
-});
-
 //Sélection des liens avec une class pour l'ouverture d'une modale
 document.querySelectorAll(".js-modal").forEach((a) => {
   a.addEventListener("click", openModal);
@@ -160,6 +154,8 @@ function genererWorks2(works) {
     // On accède à l’indice i de la liste pieces pour configurer la source de l’image.
     const imageElement = document.createElement("img");
     imageElement.src = works[i].imageUrl;
+    imageElement.id = works[i].id;
+    const idImage = works[i].id;
     oneElement.style.position = "relative";
     imageElement.style.alignItems = "center";
 
@@ -174,6 +170,7 @@ function genererWorks2(works) {
     //ajout icône corbeille suppression
     const basketElement = document.createElement("img");
     basketElement.src = "assets/icons/basket.svg";
+    basketElement.setAttribute("data-id", idImage);
     basketElement.style.backgroundColor = "black";
     basketElement.style.height = "11px";
     basketElement.style.position = "absolute";
@@ -190,9 +187,70 @@ function genererWorks2(works) {
     oneElement.appendChild(imageElement);
     oneElement.appendChild(basketElement);
     oneElement.appendChild(bgElement);
+
+    //Suppression de travaux dans la modale en cliquant sur la corbeille
+
+    basketElement.addEventListener("click", function deleteProject() {
+      const url = "http://localhost:5678/api/works/${id}";
+
+      const idImage = {
+        method: "DELETE",
+      };
+
+      fetch(url, idImage);
+    });
   }
 
-  ////Suppression de travaux dans la modale en cliquant sur la corbeille
+  // Upload de l'image d'un projet dans la modale
+  const imageFile = document.getElementById("img-upload");
+  const inputFile = document.getElementById("fileInput");
+  inputFile.onchange = function () {
+    imageFile.src = URL.createObjectURL(inputFile.files[0]);
+    document.getElementById("icon-upload").style.display = "none";
+    document.getElementById("add-button").style.display = "none";
+    document.getElementById("img-upload").style.display = "flex";
+    document.getElementById("img-upload").style.height = "169px";
+    document.getElementById("img-upload").style.alignContent = "center";
+    document.getElementById("icon-image").style.padding = "0px";
+  };
+
+  //Envoi du travail validé dans l'API
 }
 //Premier affichage de la page
 genererWorks2(works);
+
+//Je sélectionne le formulaire
+
+let form = document.getElementById("formulaire-ajout");
+
+//J'ajoute un évènement au clic sur le bouton Envoyer
+form.addEventListener("submit", async (event) => {
+  event.preventDefault(); //J'annule le rechargement automatique du formulaire
+
+  let baliseImage = document.getElementById("fileInput"); //Je pointe vers l'image
+  let imageWork = baliseImage.files[0]; //Je récupère la valeur renseignée dans le champ Titre
+
+  let baliseTitle = document.getElementById("work-choice"); //Je pointe vers le titre
+  let titleWork = baliseTitle.value; //Je récupère la valeur renseignée dans le champ Titre
+
+  let baliseCategory = document.getElementById("category-choice"); //Je pointe vers la catégorie
+  let categoryWork = baliseCategory.value; //Je récupère la valeur renseignée dans le champ Titre
+
+  const formData = new FormData();
+  formData.append("title", titleWork);
+  formData.append("image", imageWork);
+  formData.append("category", categoryWork);
+
+  const response = await fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + token,
+      ContentType: "multipart/form-data",
+    },
+    body: formData,
+  });
+
+  console.log(response);
+  console.log(imageWork, titleWork, categoryWork); //J'affiche l'email et Password
+});
