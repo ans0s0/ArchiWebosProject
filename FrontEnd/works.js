@@ -94,8 +94,6 @@ const token = localStorage.getItem("token");
 if (token) {
   // Si existant afficher la div Edition
   document.getElementById("edition").style.display = "flex";
-  document.getElementById("edition").style.justifyContent = "center";
-  document.getElementById("edition").style.alignItems = "center";
   document.getElementById("edition").style.gap = "11.42px";
   document.getElementById("login").style.display = "none";
   document.getElementById("logout").style.display = "flex";
@@ -163,20 +161,14 @@ function genererWorks2(works) {
     const bgElement = document.createElement("img");
     bgElement.src = "assets/icons/move.svg";
     bgElement.style.height = "17px";
-    bgElement.style.position = "absolute";
-    bgElement.style.top = "6px";
-    bgElement.style.right = "6px";
+    bgElement.classList.add("bg-basket");
 
     //ajout icône corbeille suppression
     const basketElement = document.createElement("img");
     basketElement.src = "assets/icons/basket.svg";
     basketElement.setAttribute("data-id", idImage);
-    basketElement.style.backgroundColor = "black";
+    basketElement.classList.add("idImage");
     basketElement.style.height = "11px";
-    basketElement.style.position = "absolute";
-    basketElement.style.zIndex = "1";
-    basketElement.style.top = "9px";
-    basketElement.style.right = "10.37px";
 
     // On positionne les éléments à la section principale gallery
     const sectionGalleryWork = document.querySelector("#works-gallery");
@@ -195,6 +187,12 @@ function genererWorks2(works) {
 
       const idImage = {
         method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + token,
+          ContentType: "multipart/form-data",
+        },
+        body: null,
       };
 
       fetch(url, idImage);
@@ -209,9 +207,6 @@ function genererWorks2(works) {
     document.getElementById("icon-upload").style.display = "none";
     document.getElementById("add-button").style.display = "none";
     document.getElementById("img-upload").style.display = "flex";
-    document.getElementById("img-upload").style.height = "169px";
-    document.getElementById("img-upload").style.alignContent = "center";
-    document.getElementById("icon-image").style.padding = "0px";
   };
 
   //Envoi du travail validé dans l'API
