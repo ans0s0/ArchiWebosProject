@@ -49,8 +49,8 @@
 		</div>
 		<!-- Modale ajout travaux -->
 		<div class="modal-wrapper" id="add-work">
-			<i class="fa-solid fa-arrow-left"></i>
-			<i class="fa-solid fa-xmark" id="js-close"></i>
+			<i class="fa-solid fa-arrow-left" id="arrow"></i>
+			<i class="fa-solid fa-xmark" id="js-close2"></i>
 			<h3 id="titlemodal">Ajout photo</h3>
 
 			<form class="formulaire-ajout" id="formulaire-ajout">
@@ -134,16 +134,17 @@
 				<span>Mode édition</span></a>
 			</div>
 		</section>
-		<div class="filters">
-			<span><button data-value="0" class="filter-button" id="tous-filter" type="button">Tous</button></span>
-			<span><button data-value="1" class="filter-button" id="objets-filtrer" type="button"
+
+		<div class="filters" id="filters">
+			<span><button data-id="0" data-on="false" class="filter-button" id="button"
+					type="button">Tous</button></span>
+			<span><button data-id="1" data-on="false" class="filter-button" id="button" type="button"
 					id="1">Objets</button></span>
-			<span><button data-value="2" class="filter-button" id="appartements-filter" type="button"
+			<span><button data-id="2" data-on="false" class="filter-button" id="button" type="button"
 					id="2">Appartements</button></span>
-			<span><button data-value="3" class="filter-button" id="hotelsRestaurants-filter" type="button" id="3">Hôtels
+			<span><button data-id="3" data-on="false" class="filter-button" id="button" type="button">Hôtels
 					&
 					restaurants</button></span>
-
 		</div>
 
 		<section id="gallery">
