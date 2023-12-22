@@ -48,49 +48,49 @@
 			</div>
 
 
-		</div>
-		<!-- Modale ajout travaux -->
-		<div class="modal-wrapper" id="add-work">
-			<i class="fa-solid fa-arrow-left" id="arrow"></i>
-			<i class="fa-solid fa-xmark" id="js-close2"></i>
-			<h3 id="titlemodal">Ajout photo</h3>
 
-			<form class="formulaire-ajout" id="formulaire-ajout">
-				<div id="add-photo">
+			<!-- Modale ajout travaux -->
+			<div class="modal-wrapper" id="add-work">
+				<i class="fa-solid fa-arrow-left" id="arrow"></i>
+				<i class="fa-solid fa-xmark" id="js-close2"></i>
+				<h3 id="titlemodal">Ajout photo</h3>
 
-					<div id="icon-image"><img src="" id="img-upload"><i class="fa-regular fa-image"
-							id="icon-upload"></i>
+				<form class="formulaire-ajout" id="formulaire-ajout">
+					<div id="add-photo">
+
+						<div id="icon-image"><img src="" id="img-upload"><i class="fa-regular fa-image"
+								id="icon-upload"></i>
+						</div>
+
+						<div id="add-button">
+							<label for="fileInput" class="input-file">+ Ajouter une photo</label>
+							<input type="file" accept="image/png, image/jpeg" id="fileInput">
+							<p>jpg, png : 4mo max</p>
+						</div>
 					</div>
 
-					<div id="add-button">
-						<label for="fileInput" class="input-file">+ Ajouter une photo</label>
-						<input type="file" accept="image/png, image/jpeg" id="fileInput">
-						<p>jpg, png : 4mo max</p>
-					</div>
-				</div>
 
+					<label for="text">Titre</label>
+					<input type="text" name="title" id="work-choice" autofocus required>
 
-				<label for="text">Titre</label>
-				<input type="text" name="title" id="work-choice" autofocus required>
+					<label for="category-select">Catégorie</label>
+					<select name="categories" id="category-choice">
+						<option value=""></option>
+						<option value="1">Objets</option>
+						<option value="2">Appartements</option>
+						<option value="3">Hôtels & restaurants</option>
 
-				<label for="category-select">Catégorie</label>
-				<select name="categories" id="category-choice">
-					<option value=""></option>
-					<option value="1">Objets</option>
-					<option value="2">Appartements</option>
-					<option value="3">Hôtels & restaurants</option>
+					</select>
 
-				</select>
+					<hr>
+					<input type="submit" value="Valider" id="submit-modal">
 
-				<hr>
-				<input type="submit" value="Valider" id="submit-modal">
-
-			</form>
+				</form>
 
 
 
+			</div>
 		</div>
-
 	</aside>
 
 
