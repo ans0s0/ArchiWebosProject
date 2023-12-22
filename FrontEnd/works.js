@@ -10,6 +10,7 @@ function genererWorks(works) {
 
     // Création d’une balise div dédiée à un travail
     const oneElement = document.createElement("div");
+    oneElement.style.width = "32%";
 
     // On accède à l’indice i de la liste pieces pour configurer la source de l’image.
     const imageElement = document.createElement("img");
@@ -74,9 +75,8 @@ if (token) {
   // Si existant afficher la div Edition
   document.getElementById("button-edition").style.display = "flex";
   document.getElementById("edition").style.display = "flex";
-  document.getElementById("edition").style.justifyContent = "center";
-  document.getElementById("edition").style.alignItems = "center";
-  document.getElementById("edition").style.gap = "11.42px";
+  const pannel = document.getElementById("edition");
+  pannel.classList.add("works-edition");
   document.getElementById("login").style.display = "none";
   document.getElementById("logout").style.display = "flex";
   document.getElementById("add-work").style.display = "none";
@@ -87,6 +87,31 @@ if (token) {
   addButton.addEventListener("click", function addProject() {
     document.getElementById("add-work").style.display = "block";
     document.getElementById("content-modal").style.display = "none";
+  });
+
+  //////
+  //fermeture de la modale au clic sur la croix
+  let closeFirst = document.getElementById("js-close");
+
+  closeFirst.addEventListener("click", function () {
+    document.getElementById("modal").style.display = "none";
+  });
+
+  //fermeture de la modale au clic sur la croix
+  let closeBis = document.getElementById("js-close2");
+
+  closeBis.addEventListener("click", function () {
+    document.getElementById("modal").style.display = "none";
+    location.reload();
+  });
+
+  //retour arrière modale
+  let goingBack = document.getElementById("arrow");
+
+  goingBack.addEventListener("click", function () {
+    console.log("retour arrière!");
+    document.getElementById("add-work").style.display = "none";
+    document.getElementById("content-modal").style.display = "flex";
   });
 }
 
@@ -104,45 +129,17 @@ logoutButton.addEventListener("click", function () {
 });
 
 //ouverture de la modale en cliquant sur le bouton
-let modal1 = null;
+let modal = null;
 const openModal = function (e) {
   e.preventDefault();
 
   const target = document.querySelector(e.target.getAttribute("href"));
 
-  document.getElementById("modal1").style.display = "flex";
-  document.getElementById("modal1").style.ariahidden = "false";
-  document.getElementById("modal1").style.ariamodal = "true";
-  modal1 = target;
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modal").style.ariahidden = "false";
+  document.getElementById("modal").style.ariamodal = "true";
+  modal = target;
 };
-
-let closeModale = document.getElementById("modal1");
-
-closeModale.addEventListener("click", function (e) {
-  document.getElementById("modal1").style.display = "none";
-  document.getElementById("modal1").style.ariahidden = "true";
-  console.log("fermeture modale");
-
-  let interieurmodal = document.getElementById("content-modal");
-  interieurmodal.addEventListener("click", clickandstop);
-  function clickandstop(e) {
-    e.stopPropagation();
-  }
-});
-
-//fermeture de la modale au clic sur la croix
-let close = document.getElementById("js-close");
-
-close.addEventListener("click", function () {
-  document.getElementById("modal1").style.display = "none";
-});
-
-//fermeture de la modale au clic sur la croix
-let close2 = document.getElementById("js-close2");
-
-close2.addEventListener("click", function () {
-  document.getElementById("modal1").style.display = "none";
-});
 
 //Sélection des liens avec une class pour l'ouverture d'une modale
 document.querySelectorAll(".js-modal").forEach((a) => {
@@ -162,38 +159,24 @@ function genererWorks2(works) {
     const imageElement = document.createElement("img");
     imageElement.src = works[i].imageUrl;
     imageElement.id = works[i].id;
-    const idImage = works[i].id;
+    const idWork = works[i].id;
     oneElement.style.position = "relative";
     imageElement.style.alignItems = "center";
-
-    // ajout fond noir corbeille suppression
-    const bgElement = document.createElement("img");
-    bgElement.src = "assets/icons/move.svg";
-    bgElement.style.height = "17px";
-    bgElement.style.position = "absolute";
-    bgElement.style.top = "6px";
-    bgElement.style.right = "6px";
 
     //ajout icône corbeille suppression
     const basketElement = document.createElement("img");
     basketElement.src = "assets/icons/basket.svg";
-    basketElement.setAttribute("data-id", idImage);
-    basketElement.style.backgroundColor = "black";
-    basketElement.style.height = "11px";
-    basketElement.style.position = "absolute";
-    basketElement.style.zIndex = "1";
-    basketElement.style.top = "9px";
-    basketElement.style.right = "10.37px";
+    basketElement.setAttribute("data-id", idWork);
+    basketElement.setAttribute("id", "basket-element");
 
     // On positionne les éléments à la section principale gallery
-    const sectionGalleryWork = document.querySelector("#works-gallery");
+    const sectionGalleryWork = document.querySelector(".works-gallery");
 
     // On rattache les balises image et title à la div
     sectionGalleryWork.appendChild(oneElement);
     // On rattache l’image à oneElement (la balise div)
     oneElement.appendChild(imageElement);
     oneElement.appendChild(basketElement);
-    oneElement.appendChild(bgElement);
 
     //Suppression de travaux dans la modale en cliquant sur la corbeille
     console.log("works[i].id", works[i].id);
@@ -215,21 +198,11 @@ function genererWorks2(works) {
   inputFile.onchange = function () {
     imageFile.src = URL.createObjectURL(inputFile.files[0]);
     document.getElementById("icon-upload").style.display = "none";
+    document.getElementById("icon-image").style.padding = "0px";
     document.getElementById("add-button").style.display = "none";
     document.getElementById("img-upload").style.display = "flex";
-    document.getElementById("img-upload").style.height = "169px";
-    document.getElementById("img-upload").style.alignContent = "center";
-    document.getElementById("icon-image").style.padding = "0px";
+    imageFile.classList.add("img-upload");
   };
-
-  //retour arrière modale
-  let back = document.getElementById("arrow");
-
-  back.addEventListener("click", function () {
-    console.log("retour arrière!");
-    document.getElementById("add-work").style.display = "none";
-    document.getElementById("content-modal").style.display = "flex";
-  });
 }
 //Premier affichage de la page
 genererWorks2(works);

@@ -292,7 +292,7 @@ a:active {
 }
 
 
-#works-gallery {
+.works-gallery {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -304,9 +304,15 @@ a:active {
 
 }
 
-#works-gallery img {
+.works-gallery img {
 	height: 139.86px;
 
+}
+
+.works-edition {
+	justify-content: center;
+	align-Items: center;
+	gap: 11.42px;
 }
 
 hr {
@@ -453,16 +459,29 @@ input[type=file] {
 	align-content: center;
 }
 
+.img-upload {
+	height: 169px;
+	align-content: center;
+}
+
 #icon-image {
 	padding-top: 0px;
 }
 
+#submit-modal {
+	display: flex;
+	justify-content: center;
+	width: 237px;
+}
+
 /* Suppression projet */
-.bg-basket {
+#basket-element {
 	position: absolute;
 	top: 6px;
 	right: 6px;
 	height: 17px;
+	cursor: pointer;
+
 }
 
 .idImage {
@@ -547,13 +566,13 @@ input[type=file] {
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	gap: 16px;
 	object-fit: cover;
-	align-items: center;
+	align-items: start;
 }
 
 #gallery div img {
-	height: 419px;
+	width: 100%;
 
 }
 
