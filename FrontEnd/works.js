@@ -10,11 +10,11 @@ function genererWorks(works) {
 
     // Création d’une balise div dédiée à un travail
     const oneElement = document.createElement("div");
+    oneElement.style.width = "32%";
 
     // On accède à l’indice i de la liste pieces pour configurer la source de l’image.
     const imageElement = document.createElement("img");
     imageElement.src = works[i].imageUrl;
-    imageElement.id = works[i].id;
 
     // Création d’une balise dédiée au titre
     const titleElement = document.createElement("h3");
@@ -38,72 +38,80 @@ genererWorks(works);
 //
 // Filtre des travaux
 
-const tousFiltrer = document.querySelector("#tous-filter");
+const filters = document.querySelectorAll(".filter-button");
 
-tousFiltrer.addEventListener("click", function () {
-  const tousfiltres = works.filter(
-    (work) => work.category.id == work.length >= 0
-  );
-  console.log(works);
+filters.forEach((filter) => {
+  filter.addEventListener("click", (e) => {
+    const dataId = e.target.dataset.id;
 
-  document.querySelector("#gallery").innerHTML = "";
-  genererWorks(works);
-});
+    document.querySelector("#gallery").innerHTML = "";
 
-// Filtre des Objets
+    if (dataId === "0") return genererWorks(works);
 
-const objetsFiltrer = document.querySelector("#objets-filtrer");
+    const worksFiltered = works.filter(
+      (work) => work.category.id === Number(dataId)
+    );
 
-objetsFiltrer.addEventListener("click", function () {
-  const objetsfiltres = works.filter((work) => work.category.id == 1);
-  console.log(objetsfiltres);
+    genererWorks(worksFiltered);
 
-  document.querySelector("#gallery").innerHTML = "";
-  genererWorks(objetsfiltres);
-});
+    console.log(dataId);
+  });
 
-// Filtre des appartements
+  //couleur boutons filtres
 
-const appartementsFiltrer = document.querySelector("#appartements-filter");
+  const button = document.querySelectorAll(".filter-button");
 
-appartementsFiltrer.addEventListener("click", function () {
-  const appartementsFiltres = works.filter((work) => work.category.id == 2);
-  console.log(appartementsFiltres);
-
-  document.querySelector("#gallery").innerHTML = "";
-  genererWorks(appartementsFiltres);
-});
-
-// Filtre des hotels et restaurants
-const hotelsRestaurantFiltrer = document.querySelector(
-  "#hotelsRestaurants-filter"
-);
-
-hotelsRestaurantFiltrer.addEventListener("click", function () {
-  const hotelsRestaurantFiltres = works.filter((work) => work.category.id == 3);
-  console.log(hotelsRestaurantFiltres);
-  document.querySelector("#gallery").innerHTML = "";
-  genererWorks(hotelsRestaurantFiltres);
-  document.getElementById("hotelsRestaurants-filter").style.backgroundColor =
-    "#1D6154";
-  document.getElementById("hotelsRestaurants-filter").style.color = "#FFFFFF";
+  button.forEach((button) => {
+    button.addEventListener("click", () => {
+      document.querySelector(".active")?.classList.remove("active");
+      button.classList.add("active");
+    });
+  });
 });
 
 //On récupère le token si existant
 const token = localStorage.getItem("token");
 if (token) {
   // Si existant afficher la div Edition
+  document.getElementById("button-edition").style.display = "flex";
   document.getElementById("edition").style.display = "flex";
-  document.getElementById("edition").style.gap = "11.42px";
+  const pannel = document.getElementById("edition");
+  pannel.classList.add("works-edition");
   document.getElementById("login").style.display = "none";
   document.getElementById("logout").style.display = "flex";
   document.getElementById("add-work").style.display = "none";
+  document.getElementById("filters").style.display = "none";
 
   // Ajout d'un nouveau projet
   let addButton = document.getElementById("submit-modal");
   addButton.addEventListener("click", function addProject() {
     document.getElementById("add-work").style.display = "block";
     document.getElementById("content-modal").style.display = "none";
+  });
+
+  //////
+  //fermeture de la modale au clic sur la croix
+  let closeFirst = document.getElementById("js-close");
+
+  closeFirst.addEventListener("click", function () {
+    document.getElementById("modal").style.display = "none";
+  });
+
+  //fermeture de la modale au clic sur la croix
+  let closeBis = document.getElementById("js-close2");
+
+  closeBis.addEventListener("click", function () {
+    document.getElementById("modal").style.display = "none";
+    location.reload();
+  });
+
+  //retour arrière modale
+  let goingBack = document.getElementById("arrow");
+
+  goingBack.addEventListener("click", function () {
+    console.log("retour arrière!");
+    document.getElementById("add-work").style.display = "none";
+    document.getElementById("content-modal").style.display = "flex";
   });
 }
 
@@ -112,6 +120,7 @@ let logoutButton = document.getElementById("logout");
 logoutButton.addEventListener("click", function () {
   if (token) {
     document.getElementById("edition").style.display = "none";
+    document.getElementById("filters").style.display = "flex";
     document.getElementById("button-edition").style.display = "none";
     document.getElementById("logout").style.display = "none";
     document.getElementById("login").style.display = "flex";
@@ -120,20 +129,17 @@ logoutButton.addEventListener("click", function () {
 });
 
 //ouverture de la modale en cliquant sur le bouton
-
+let modal = null;
 const openModal = function (e) {
   e.preventDefault();
-  const target = document.querySelector(e.target.getAttribute("href"));
-  document.getElementById("modal1").style.display = "flex";
-  document.getElementById("modal1").style.ariahidden = "false";
-  document.getElementById("modal1").style.ariamodal = "true";
-};
-//fermeture de la modale au clic sur la croix
-let close = document.getElementById("js-close");
 
-close.addEventListener("click", function () {
-  document.getElementById("modal1").style.display = "none";
-});
+  const target = document.querySelector(e.target.getAttribute("href"));
+
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modal").style.ariahidden = "false";
+  document.getElementById("modal").style.ariamodal = "true";
+  modal = target;
+};
 
 //Sélection des liens avec une class pour l'ouverture d'une modale
 document.querySelectorAll(".js-modal").forEach((a) => {
@@ -153,49 +159,36 @@ function genererWorks2(works) {
     const imageElement = document.createElement("img");
     imageElement.src = works[i].imageUrl;
     imageElement.id = works[i].id;
-    const idImage = works[i].id;
+    const idWork = works[i].id;
     oneElement.style.position = "relative";
     imageElement.style.alignItems = "center";
-
-    // ajout fond noir corbeille suppression
-    const bgElement = document.createElement("img");
-    bgElement.src = "assets/icons/move.svg";
-    bgElement.style.height = "17px";
-    bgElement.classList.add("bg-basket");
 
     //ajout icône corbeille suppression
     const basketElement = document.createElement("img");
     basketElement.src = "assets/icons/basket.svg";
-    basketElement.setAttribute("data-id", idImage);
-    basketElement.classList.add("idImage");
-    basketElement.style.height = "11px";
+    basketElement.setAttribute("data-id", idWork);
+    basketElement.setAttribute("id", "basket-element");
 
     // On positionne les éléments à la section principale gallery
-    const sectionGalleryWork = document.querySelector("#works-gallery");
+    const sectionGalleryWork = document.querySelector(".works-gallery");
 
     // On rattache les balises image et title à la div
     sectionGalleryWork.appendChild(oneElement);
     // On rattache l’image à oneElement (la balise div)
     oneElement.appendChild(imageElement);
     oneElement.appendChild(basketElement);
-    oneElement.appendChild(bgElement);
 
     //Suppression de travaux dans la modale en cliquant sur la corbeille
+    console.log("works[i].id", works[i].id);
 
     basketElement.addEventListener("click", function deleteProject() {
-      const url = "http://localhost:5678/api/works/${id}";
-
-      const idImage = {
+      fetch(`http://localhost:5678/api/works/${works[i].id}`, {
         method: "DELETE",
         headers: {
-          Accept: "application/json",
+          // Accept: "application/json",
           Authorization: "Bearer " + token,
-          ContentType: "multipart/form-data",
         },
-        body: null,
-      };
-
-      fetch(url, idImage);
+      }).then((response) => console.log({ response }));
     });
   }
 
@@ -205,11 +198,11 @@ function genererWorks2(works) {
   inputFile.onchange = function () {
     imageFile.src = URL.createObjectURL(inputFile.files[0]);
     document.getElementById("icon-upload").style.display = "none";
+    document.getElementById("icon-image").style.padding = "0px";
     document.getElementById("add-button").style.display = "none";
     document.getElementById("img-upload").style.display = "flex";
+    imageFile.classList.add("img-upload");
   };
-
-  //Envoi du travail validé dans l'API
 }
 //Premier affichage de la page
 genererWorks2(works);

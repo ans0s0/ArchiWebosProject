@@ -205,6 +205,10 @@ li:hover {
 	display: none;
 }
 
+.login {
+	font-weight: bold;
+}
+
 /* Mode edition */
 
 #edition {
@@ -213,6 +217,13 @@ li:hover {
 	height: 59px;
 	background-color: black;
 	color: white;
+
+}
+
+.edition {
+
+	justify-content: center;
+	align-items: center;
 }
 
 #edition2 {
@@ -230,12 +241,23 @@ li:hover {
 	height: 15.58px;
 }
 
+#button-edition {
+	display: none;
+	text-decoration: none;
+	color: #000;
+}
+
+a:active {
+	color: black;
+	text-decoration: none;
+	text-decoration: none;
+}
+
 /* Modale */
 
 .modal {
-	width: 630px;
 	Position: fixed;
-	display: flex;
+	display: none;
 	align-items: center;
 	justify-content: center;
 	top: 0;
@@ -249,9 +271,8 @@ li:hover {
 	border-radius: 10px;
 	background: #FFF;
 	padding: 60px 99.9px 45px 104.5px;
-	max-width: calc(100vw-20px);
+	width: 630px;
 	height: 688px;
-	max-height: calc(100vh-20px);
 	overflow: auto;
 
 }
@@ -265,19 +286,33 @@ li:hover {
 	font-size: 26px;
 }
 
-
-
-#works-gallery {
-	display: grid;
-	align-items: center;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-column-gap: 6.23px;
-	grid-row-gap: 25.47px;
+.header-modal {
+	display: flex;
+	justify-content: space-between;
 }
 
-#works-gallery img {
+
+.works-gallery {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	object-fit: cover;
+	align-items: center;
+	gap: 6.23px;
+	margin: 25.47px;
+
+
+}
+
+.works-gallery img {
 	height: 139.86px;
 
+}
+
+.works-edition {
+	justify-content: center;
+	align-Items: center;
+	gap: 11.42px;
 }
 
 hr {
@@ -304,6 +339,13 @@ aside input {
 
 }
 
+#js-close2 {
+	width: 24px;
+	height: 24px;
+	float: right;
+	cursor: pointer;
+}
+
 /* Modale ajout photo */
 
 .fa-arrow-left:before {
@@ -315,9 +357,12 @@ aside input {
 	background-color: #E8F1F6;
 	border-radius: 3px;
 	height: 169px;
+	margin-bottom: 30px;
 }
 
-#work-choice {
+
+#work-choice,
+#category-choice {
 	width: 100%;
 	height: 51px;
 	padding: 0;
@@ -347,9 +392,12 @@ aside input {
 	align-items: center;
 }
 
-#add-button button {
+input[type=file] {
+	display: none;
+}
 
-	height: 36px;
+
+.input-file {
 	border-radius: 50px;
 	border-style: none;
 	background: #CBD6DC;
@@ -357,6 +405,7 @@ aside input {
 	font-family: Work Sans;
 	font-size: 14px;
 	padding: 10px 33px 10px 33px;
+	cursor: pointer;
 }
 
 
@@ -400,8 +449,48 @@ aside input {
 	margin-bottom: 32px;
 }
 
-/* Ajout projet */
+#arrow {
+	cursor: pointer;
+}
 
+/* Ajout projet */
+#img-upload {
+	height: 169px;
+	align-content: center;
+}
+
+.img-upload {
+	height: 169px;
+	align-content: center;
+}
+
+#icon-image {
+	padding-top: 0px;
+}
+
+#submit-modal {
+	display: flex;
+	justify-content: center;
+	width: 237px;
+}
+
+/* Suppression projet */
+#basket-element {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	height: 17px;
+	cursor: pointer;
+
+}
+
+.idImage {
+	background-color: #000;
+	position: absolute;
+	z-index: 1;
+	top: 9px;
+	right: 10.37px;
+}
 
 /* Introduction */
 #introduction {
@@ -434,6 +523,15 @@ aside input {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+	margin-bottom: 0;
+}
+
+#portfolio {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 31px;
+
 }
 
 .filters {
@@ -441,8 +539,6 @@ aside input {
 	justify-content: center;
 	gap: 10px;
 	text-align: center;
-	padding-bottom: 51px;
-
 }
 
 .filter-button {
@@ -456,9 +552,11 @@ aside input {
 	border-radius: 60px;
 	padding-left: 28px;
 	padding-right: 30px;
-
 }
 
+
+
+.filter-button.active,
 .filter-button:hover {
 	background-color: #1D6154;
 	color: white;
@@ -466,20 +564,22 @@ aside input {
 
 #gallery {
 	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	object-fit: cover;
+	align-items: start;
 }
 
 #gallery div img {
-	height: 419px;
+	width: 100%;
 
 }
 
 #gallery h3 {
 	color: #3D3D3D;
 	padding-top: 5px;
+	margin-bottom: 8px;
 	font-family: Work Sans;
 	font-size: 13px;
 	font-style: normal;
@@ -604,6 +704,11 @@ footer nav ul {
 
 #error {
 	display: none;
+	padding-top: 8px;
+}
+
+#img-upload {
+	display: none;
 }
 
 input[type="submit"] {
@@ -615,4 +720,10 @@ input[type="submit"] {
 	width: 180px;
 	text-align: center;
 	border-radius: 60px;
+	cursor: pointer;
+}
+
+.active {
+	background-color: #1D6154;
+	color: white;
 }
